@@ -1,4 +1,8 @@
 with source as (
-    select * from `ae-bootcamp-0323`.`dl_northwind`.`customer`
+
+    select * from {{ source('northwind', 'customer') }}
 )
-select * from source
+select 
+    *,
+    current_timestamp() as ingestion_timestamp
+from source
